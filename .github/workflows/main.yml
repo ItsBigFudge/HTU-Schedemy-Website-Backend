@@ -40,9 +40,9 @@ jobs:
           set -euo pipefail 
           cd /opt/myapp
           
-          ls -lah /opt/myapp/ || true
+          ls -lah /opt/myapp/target || true
           
-          JAR="$(ls -t /opt/myapp/*jar | head -n 1)"
+          JAR="$(ls -t /opt/myapp/target/*jar | head -n 1)"
           echo "Using $JAR"
           mv "$JAR" /opt/myapp/app.jar
           sudo systemctl daemon-reload
