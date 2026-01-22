@@ -38,12 +38,13 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
           set -euo pipefail 
-          sudo mkdir -p /opt/myapp /opt/myapp/target
-          ls -lah /opt/myapp/target || true
-          JAR="$(ls -t /opt/myapp/target/*jar | head -n 1)"
+          cd /opt/myapp
+          
+          ls -lah /opt/myapp/ || true
+          
+          JAR="$(ls -t /opt/myapp/*jar | head -n 1)"
           echo "Using $JAR"
-          sudo cp "$JAR" /opt/myapp/app.jar
-          sudo chown deploy:deploy /opt/myapp/app.jar
+          mv "$JAR" /opt/myapp/app.jar
           sudo systemctl daemon-reload
           sudo systemctl restart myapp
         
