@@ -28,7 +28,7 @@ public class Test {
         return 1;
     }
 
-    @GetMapping("/test")
+    @GetMapping("/test1")
     public String test(){
         return "test";
     }
